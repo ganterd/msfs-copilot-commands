@@ -1,0 +1,5 @@
+build/
+dist/
+env/
+test_audio/
+__pycache__/

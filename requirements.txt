@@ -1,0 +1,14 @@
+# Speech recognition
+faster-whisper==1.0.2
+SpeechRecognition==3.10.4
+
+# Text-to-speech
+py-picotts==0.1.2
+pyttsx3==2.90
+edge-tts==6.1.12
+
+# Audio manipulation and output
+pygame==2.5.2
+simpleaudio==1.0.4
+PyAudio==0.2.14
+pedalboard==0.9.6
