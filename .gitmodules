@@ -1,0 +1,6 @@
+[submodule "ext/piper-phonemize"]
+	path = ext/piper-phonemize
+	url = https://github.com/rhasspy/piper-phonemize.git
+[submodule "ext/piper"]
+	path = ext/piper
+	url = https://github.com/rhasspy/piper.git

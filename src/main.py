@@ -20,24 +20,24 @@ def action_gear_up():
     copilotTTS.say("Gear up")
 
 def action_flaps_0():
-    copilotTTS.say("Flaps Zero")
+    copilotTTS.say("Speed checked. Flaps Zero")
 
 def action_flaps_1():
-    copilotTTS.say("Flaps 1")
+    copilotTTS.say("Speed checked. Flaps 1")
 
 def action_flaps_2():
-    copilotTTS.say("Flaps 2")
+    copilotTTS.say("Speed checked. Flaps 2")
 
 def action_flaps_3():
-    copilotTTS.say("Flaps 3")
+    copilotTTS.say("Speed checked. Flaps 3")
 
 def action_flaps_full():
-    copilotTTS.say("Flaps full")
+    copilotTTS.say("Speed checked. Flaps full")
 
 def action_before_start_checklist():
     copilotTTS.say("Before start checklist")
     copilotTTS.say("Cockpit Preparation")
-    copilotTTS.say("Signs")
+    copilotTTS.say("Passenger Signs")
     copilotTTS.say("ADIRS")
     copilotTTS.say("Fuel Quantity")
     copilotTTS.say("Takeoff Data")
@@ -91,9 +91,9 @@ def matchAndExecute(text : str):
     else:
         print("No match found")
 
-def recognize(audio, method : str = "faster_whisper"):
+def recognize(audio, method : str = "whisper_local"):
     text = ""
-    if method == "faster_whisper":
+    if method == "whisper_local":
         # Convert the recognizer audio into raw WAV data
         audio_raw = audio.get_raw_data(convert_rate=16000, convert_width=2)
         audio_np = np.frombuffer(audio_raw, dtype=np.int16)
@@ -108,7 +108,6 @@ def recognize(audio, method : str = "faster_whisper"):
         for segment in segments:
             print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
             text = text + segment.text
-            
     elif method == "google":
         text = recognizer.recognize_google(audio)
 

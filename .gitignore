@@ -2,4 +2,5 @@ build/
 dist/
 env/
 test_audio/
+piper_voices/
 __pycache__/

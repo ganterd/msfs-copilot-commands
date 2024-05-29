@@ -1,11 +1,8 @@
 
-def createVoice(engine : str = "edge"):
+def createVoice(engine : str = "piper"):
     if engine == "text":
         from tts.engines.text import TTSTextBased
         return TTSTextBased()
-    elif engine == "coqui":
-        from tts.engines.coqui import TTSPyTTS
-        return TTSPyTTS()
     elif engine == "pico":
         from tts.engines.pico import PicoTTS
         return PicoTTS()
@@ -15,3 +12,6 @@ def createVoice(engine : str = "edge"):
     elif engine == "edge":
         from tts.engines.edge import EdgeTTS
         return EdgeTTS()
+    elif engine == "piper":
+        from tts.engines.piper import PiperTTS
+        return PiperTTS()
