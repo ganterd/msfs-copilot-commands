@@ -1,0 +1,141 @@
+{
+    "name": "Fenix A320 Copilot",
+    "aircraft": "Fenix A320",
+    "actions":
+    [
+        {
+            "phrases": [
+                "before start checklist"
+            ],
+            "actions": [
+                { "variable": { "name": "fuel_kg", "value": "int({simvar:FUEL_TOTAL_QUANTITY_WEIGHT} * 0.453592)" }},
+                { "variable": { "name": "qnh", "value": "int({lvar:N_FCU_EFIS1_BARO_HPA})", "is_digit_string": true }},
+                { "say": "Before Start Checklist. Passenger Signs. ADIRS. Fuel Quantity {var:fuel_kg} kilograms. Baro ref, Q N H {var:qnh}. Before start checklist complete" }
+            ]
+        },
+        {
+            "phrases": [ "flaps 1", "flaps one" ],
+            "actions": [
+                { "say": "Speed checked." },
+                { "do": { "event_id": "FLAPS_1" }},
+                { "say": "Flaps 1." }
+            ]
+        },
+        {
+            "phrases": [ "flaps 2", "flaps two" ],
+            "actions": [
+                { "say": "Speed checked." },
+                { "do": { "event_id": "FLAPS_2" }},
+                { "say": "Flaps 2." }
+            ]
+        },
+        {
+            "phrases": [ "flaps 3", "flaps three" ],
+            "actions": [
+                { "say": "Speed checked." },
+                { "do": { "event_id": "FLAPS_3" }},
+                { "say": "Flaps 3." }
+            ]
+        },
+        {
+            "phrases": [ "flaps four", "flaps 4", "flaps full" ],
+            "actions": [
+                { "say": "Speed checked." },
+                { "do": { "event_id": "FLAPS_FULL" }},
+                { "say": "Flaps Full." }
+            ]
+        },
+        {
+            "phrases": [ "gear up" ],
+            "actions": [
+                { "do": { "event_id": "GEAR_UP" }},
+                { "say": "Gear up." }
+            ]
+        },
+        {
+            "phrases": [ "gear down" ],
+            "actions": [
+                { "say": "Speed checked." },
+                { "do": { "event_id": "GEAR_DOWN" }},
+                { "say": "Gear down." }
+            ]
+        },
+        {
+            "phrases": ["variable test"],
+            "actions": [
+                { 
+                    "variable":
+                    {
+                            "name": "fuel_kg",
+                            "value": "int({simvar:FUEL_TOTAL_QUANTITY_WEIGHT} * 0.453592)"
+                    }
+                },
+                {
+                    "say": "Fuel on board, {var:fuel_kg} kilograms"
+                }
+            ]
+        },
+        {
+            "phrases": [ "conditional test" ],
+            "actions": [
+                { "say": "Roger" },
+                { "conditional": 
+                    {
+                        "cond": "{lvar:I_MIP_AUTOBRAKE_MAX_L} == 0.0",
+                        "if_true":[
+                            {"say": "Autobrake max"},
+                            { "do": { "lvar": "S_MIP_AUTOBRAKE_MAX", "lvar_eval": "{var} + 2" } }
+                        ],
+                        "if_false":[
+                            {"say": "Autobrake already max"}
+                        ]
+                    }
+                },
+                { "say": "Ready for taxi clearance." }
+            ]
+        },
+        {
+            "phrases": [ "flight control check" ],
+            "actions": [
+                { "say": "Flight control check" },
+                { "wait": { "until": "{simvar:ELEVATOR_POSITION} > 0.8"}},
+                { "say": "Full up" },
+                { "wait": { "until": "{simvar:ELEVATOR_POSITION} < -0.8"}},
+                { "say": "Full down" },
+                { "wait": { "until": "{simvar:ELEVATOR_POSITION} == 0.0" }},
+                { "say": "Neutral" },
+                { "wait": { "until": "{simvar:AILERON_POSITION} < -0.8" }},
+                { "say": "Full left" },
+                { "wait": { "until": "{simvar:AILERON_POSITION} > 0.8" }},
+                { "say": "Full right" },
+                { "wait": { "until": "{simvar:AILERON_POSITION} == 0.0" }},
+                { "say": "Neutral" },
+                { "say": "Rudder" },
+                { "wait": { "until": "{simvar:RUDDER_POSITION} < -0.8" }},
+                { "say": "Full left" },
+                { "wait": { "until": "{simvar:RUDDER_POSITION} > 0.8" }},
+                { "say": "Full right" },
+                { "wait": { "until": "{simvar:RUDDER_POSITION} == 0.0" }},
+                { "say": "Neutral."},
+                { "say": "Flight control check complete" },
+                { "say": "Weather radar, on" },
+                { "do": { "var": "lvar:S_WR_SYS", "value": "0.0" } },
+                { "say": "Predictive windshear, auto" },
+                { "do": { "var": "lvar:S_WR_PRED_WS", "value": "1.0" } },
+                { "conditional": 
+                    {
+                        "cond": "{lvar:I_MIP_AUTOBRAKE_MAX_L} == 0.0",
+                        "if_true":[
+                            {"say": "Autobrake max"},
+                            { "do": { "var": "lvar:S_MIP_AUTOBRAKE_MAX", "value": "{lvar:S_MIP_AUTOBRAKE_MAX} + 2" } }
+                        ],
+                        "if_false":[
+                            {"say": "Autobrake already max"}
+                        ]
+                    }
+                },
+                { "say": "Ready for taxi clearance." }
+            ]
+        }
+    ]
+}

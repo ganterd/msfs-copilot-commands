@@ -16,3 +16,12 @@ pedalboard==0.9.6
 # Project Dependencies
 setuptools>=42
 pybind11>=2.10.0
+
+# Config
+dataclasses-json==0.6.6
+
+# MSFS Control
+SimConnect==0.4.26
+
+# Other utils
+memory-profiler-0.61.0
