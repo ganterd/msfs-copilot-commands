@@ -1,5 +1,5 @@
 # MSFS Voice Activated Copilot
-> :warning: **WORK IN PROGRESS** :warning
+> :warning: **WORK IN PROGRESS** :warning:
 >
 > This project is only an experiment, and very, very much a work in progress. Please don't judge me for how messy it is, and please don't expect anything to work right at all at the moment. 
 
